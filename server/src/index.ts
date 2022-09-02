@@ -14,7 +14,8 @@ import { AppDataSource } from "./data-source";
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
       resolvers: [UserResolver]
-    })
+    }),
+    context: ({req, res}) => ({ req, res })
   });
   
   await apolloServer.start(); 
